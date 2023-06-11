@@ -15,28 +15,30 @@ def read_File():
     
     return df
 
-def whichprediction(df):
+def whichprediction(df, n):
     # Choose which store or item to predict based on sales
     
-#     col1,col2 = st.columns(2)
+    if n == 1:
+        st.experimental_rerun
     
-#     with col1:
-#            item = st.selectbox('Which Item to predict?', np.append('all', df['item'].unique()))
+    col1,col2 = st.columns(2)
     
-#     with col2:
-#            store = st.selectbox('Which Store to predict?', np.append('all',df['item'].unique()))
+    with col1:
+           item = st.selectbox('Which Item to predict?', np.append('all', df['item'].unique()))
     
-#     if item != 'all':
-#         df = df.loc[df.item == item]
+    with col2:
+           store = st.selectbox('Which Store to predict?', np.append('all',df['item'].unique()))
+    
+    if item != 'all':
+        df = df.loc[df.item == item]
         
-#     if store != 'all':
-#         df = df.loc[df.store == store]
-    df = df.loc[df.item == 1]
-    df = df.loc[df.store == 1]
+    if store != 'all':
+        df = df.loc[df.store == store]
     
     df = df.drop(['store','item'], axis=1)
-
-    return df
+    n = n + 1
+     
+    return df, n
 
 def monthly_sales(df):
     # process dataframe to monthly sales
@@ -123,7 +125,8 @@ def main():
     
     df = read_File()
     
-    df = whichprediction(df)
+    n=0
+    df, n = whichprediction(df, n)
 
     monthly = monthly_sales(df)
 
