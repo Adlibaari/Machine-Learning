@@ -12,7 +12,11 @@ def read_File():
     
     url='https://raw.githubusercontent.com/Adlibaari/Machine-Learning/main/train.csv?token=GHSAT0AAAAAACDWEFKIZNTGVZNZMPWXXZ76ZEFW2XQ'
     df = pd.read_csv(url)
-    df = df.drop(['store','item'], axis=1)
+    
+    item = st.selectbox('Which Items to predict?', ('all', df['item'].unique()))
+    
+    if item == 'all':
+        df = df.drop(['store','item'], axis=1)
 
     return df
 
@@ -112,6 +116,8 @@ def main():
     X_train, y_train, X_test, y_test, reg = model(train, test)
 
     forecast(monthly,test,X_test, reg)
+    
+    scores(test)
 
 if __name__ == "__main__":
     main()
