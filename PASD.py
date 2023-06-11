@@ -4,7 +4,7 @@ import numpy as np
 import seaborn as sns
 import matplotlib.pyplot as plt
 import xgboost as xgb 
-from sklearn.metrics import mean_squared_error
+from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
 import streamlit as st
 
 def read_File():
@@ -13,9 +13,26 @@ def read_File():
     url='https://raw.githubusercontent.com/Adlibaari/Machine-Learning/main/train.csv?token=GHSAT0AAAAAACDWEFKIZNTGVZNZMPWXXZ76ZEFW2XQ'
     df = pd.read_csv(url)
     
-    item = st.selectbox('Which Items to predict?', np.append('all', df['item'].unique()))
+    return df
+
+def whichprediction(df):
+    # Choose which store or item to predict based on sales
+    
+    col1,col2 = st.columns(2)
+    
+    with col1:
+           item = st.selectbox('Which Item to predict?', np.append('all', df['item'].unique()))
+    
+    with col2:
+           store = st.selectbox('Which Store to predict?', np.append('all',df['item']unique()))
     
     if item == 'all':
+        df = df.drop(['store','item'], axis=1)
+    else:
+        df = df.loc[df.item == item]
+        df = df.drop(['store','item'], axis=1)
+    
+    if store == 'all':
         df = df.drop(['store','item'], axis=1)
     else:
         df = df.loc[df.item == item]
@@ -107,6 +124,8 @@ def main():
     st.title('Forecasting demand')
     
     df = read_File()
+    
+    df = whichprediction(df)
 
     monthly = monthly_sales(df)
 
