@@ -13,9 +13,12 @@ def read_File():
     url='https://raw.githubusercontent.com/Adlibaari/Machine-Learning/main/train.csv?token=GHSAT0AAAAAACDWEFKIZNTGVZNZMPWXXZ76ZEFW2XQ'
     df = pd.read_csv(url)
     
-    item = st.selectbox('Which Items to predict?', ('all', df['item'].unique()))
+    item = st.selectbox('Which Items to predict?', np.append('all', df['item'].unique()))
     
     if item == 'all':
+        df = df.drop(['store','item'], axis=1)
+    else:
+        df = df.loc[df.item == item]
         df = df.drop(['store','item'], axis=1)
 
     return df
