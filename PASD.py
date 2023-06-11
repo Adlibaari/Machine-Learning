@@ -18,19 +18,21 @@ def read_File():
 def whichprediction(df):
     # Choose which store or item to predict based on sales
     
-    col1,col2 = st.columns(2)
+#     col1,col2 = st.columns(2)
     
-    with col1:
-           item = st.selectbox('Which Item to predict?', np.append('all', df['item'].unique()))
+#     with col1:
+#            item = st.selectbox('Which Item to predict?', np.append('all', df['item'].unique()))
     
-    with col2:
-           store = st.selectbox('Which Store to predict?', np.append('all',df['item'].unique()))
+#     with col2:
+#            store = st.selectbox('Which Store to predict?', np.append('all',df['item'].unique()))
     
-    if item != 'all':
-        df = df.loc[df.item == item]
+#     if item != 'all':
+#         df = df.loc[df.item == item]
         
-    if store != 'all':
-        df = df.loc[df.store == store]
+#     if store != 'all':
+#         df = df.loc[df.store == store]
+    df = df.loc[df.item == 1]
+    df = df.loc[df.store == 1]
     
     df = df.drop(['store','item'], axis=1)
 
