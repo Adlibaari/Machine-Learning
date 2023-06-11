@@ -30,10 +30,10 @@ def whichprediction(df, n):
            store = st.selectbox('Which Store to predict?', np.append('all',df['item'].unique()))
     
     if item != 'all':
-        df = df.loc[df.item == item]
+        df = df.loc[df.item == int(item)]
         
     if store != 'all':
-        df = df.loc[df.store == store]
+        df = df.loc[df.store == int(store)]
     
     df = df.drop(['store','item'], axis=1)
     n = n + 1
