@@ -37,7 +37,8 @@ def whichprediction(df, n):
     
     df = df.drop(['store','item'], axis=1)
     n = n + 1
-     
+    
+    st.text(n)
     return df, n
 
 def monthly_sales(df):
