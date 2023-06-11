@@ -84,7 +84,21 @@ def forecast(df, test, X_test, reg):
     plt.legend(['Actual Data','Prediction Data'])
     st.pyplot(fig, use_container_width=True)
 
+def scores(test):
+    # get the scores
+
+    rmse = np.sqrt(mean_squared_error(test['sales'],test['prediction']))
+    mae = mean_absolute_error(test['sales'],test['prediction'])
+    r2 = r2_score(test['sales'],test['prediction'])
+
+    st.write(f'RMSE : {rmse}')
+    st.write(f'MAE : {mae}')
+    st.write(f'R2 Score : {r2}')
+    
 def main():
+    
+    st.title('Forecasting demand')
+    
     df = read_File()
 
     monthly = monthly_sales(df)
