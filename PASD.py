@@ -141,7 +141,7 @@ def main():
 
     forecast(monthly,test,X_test, reg)
     
-    scores(test)
+#     scores(test)
 
 if __name__ == "__main__":
     main()
