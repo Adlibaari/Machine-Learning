@@ -5,11 +5,13 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import xgboost as xgb 
 from sklearn.metrics import mean_squared_error
+import streamlit as st
 
 def read_File():
     # Read csv file
-
-    df = pd.read_csv(r"C:\Users\Puteri Setyo Utami\Downloads\Train.csv\Train.csv")
+    
+    url='https://raw.githubusercontent.com/Adlibaari/Machine-Learning/main/train.csv?token=GHSAT0AAAAAACDWEFKIZNTGVZNZMPWXXZ76ZEFW2XQ'
+    df = pd.read_csv(url)
     df = df.drop(['store','item'], axis=1)
 
     return df
@@ -76,10 +78,11 @@ def forecast(df, test, X_test, reg):
 # Forecasting
     test['prediction'] = reg.predict(X_test)
     df = df.merge(test[['prediction']],how='left',left_index=True,right_index=True)
-    ax = df[['sales']].plot(figsize=(15,5))
+    fig, ax= plt.subplots(figsize=(15,5))
+    df[['sales']].plot(ax=ax, style='-')
     df['prediction'].plot(ax=ax, style='-')
     plt.legend(['Actual Data','Prediction Data'])
-    plt.show()
+    st.plyplot(fig, use_container_width=True)
 
 def main():
     df = read_File()
