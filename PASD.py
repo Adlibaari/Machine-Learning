@@ -26,17 +26,13 @@ def whichprediction(df):
     with col2:
            store = st.selectbox('Which Store to predict?', np.append('all',df['item'].unique()))
     
-    if item == 'all':
-        df = df.drop(['item'], axis=1)
-    else:
+    if item != 'all':
         df = df.loc[df.item == item]
-        df = df.drop(['item'], axis=1)
-    
-    if store == 'all':
-        df = df.drop(['store'], axis=1)
-    else:
+        
+    if store != 'all':
         df = df.loc[df.store == store]
-        df = df.drop(['store'], axis=1)
+    
+    df = df.drop(['store','item'], axis=1)
 
     return df
 
