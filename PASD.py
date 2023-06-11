@@ -35,7 +35,7 @@ def whichprediction(df):
     if store == 'all':
         df = df.drop(['store'], axis=1)
     else:
-        df = df.loc[df.item == item]
+        df = df.loc[df.store == store]
         df = df.drop(['store'], axis=1)
 
     return df
