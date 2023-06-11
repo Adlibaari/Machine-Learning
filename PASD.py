@@ -82,7 +82,7 @@ def forecast(df, test, X_test, reg):
     df[['sales']].plot(ax=ax, style='-')
     df['prediction'].plot(ax=ax, style='-')
     plt.legend(['Actual Data','Prediction Data'])
-    st.plyplot(fig, use_container_width=True)
+    st.pyplot(fig, use_container_width=True)
 
 def main():
     df = read_File()
