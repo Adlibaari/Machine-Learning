@@ -18,9 +18,6 @@ def read_File():
 def whichprediction(df, n):
     # Choose which store or item to predict based on sales
     
-    if n == 1:
-        st.experimental_rerun
-    
     col1,col2 = st.columns(2)
     
     with col1:
@@ -36,9 +33,7 @@ def whichprediction(df, n):
         df = df.loc[df.store == int(store)]
     
     df = df.drop(['store','item'], axis=1)
-    n = n + 1
-    
-    st.text(n)
+   
     return df, n
 
 def monthly_sales(df):
