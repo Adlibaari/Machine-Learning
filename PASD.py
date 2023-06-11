@@ -24,7 +24,7 @@ def whichprediction(df):
            item = st.selectbox('Which Item to predict?', np.append('all', df['item'].unique()))
     
     with col2:
-           store = st.selectbox('Which Store to predict?', np.append('all',df['item']unique()))
+           store = st.selectbox('Which Store to predict?', np.append('all',df['item'].unique()))
     
     if item == 'all':
         df = df.drop(['store','item'], axis=1)
