@@ -51,7 +51,7 @@ def monthly_sales(df):
 def tts(df):
     # Split train and test data
 
-    train = df.loc[df.index < '01-12-2017'] 
+    train = df.loc[df.index < '31-01-2017'] 
     test = df.loc[df.index >= '01-01-2017']
     
     return train, test
