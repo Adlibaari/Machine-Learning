@@ -10,7 +10,7 @@ import streamlit as st
 def read_File():
     # Read csv file
     
-    url='https://raw.githubusercontent.com/Adlibaari/Machine-Learning/main/train.csv?token=GHSAT0AAAAAACDWEFKIZNTGVZNZMPWXXZ76ZEFW2XQ'
+    url='https://raw.githubusercontent.com/Adlibaari/Machine-Learning/refs/heads/main/train.csv'
     df = pd.read_csv(url)
     
     return df
